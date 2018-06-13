@@ -8,7 +8,7 @@ public class Course {
     String id;
     HashSet<CourseInSemester> courses;
     HashMap<String, Question> Questions;
-    SystemModel controller;
+    MySystemModel controller;
 
     public Course(String name, String id) {
         this.name = name;
