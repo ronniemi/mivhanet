@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.util.Pair;
 
+import java.net.SocketPermission;
 import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,11 +20,13 @@ public class MyViewModel extends Observable implements Observer {
     public MyViewModel(MySystemModel model){
         model.addObserver(this);
         this.model = model;
-        massage = new SimpleStringProperty();
+        massage = new SimpleStringProperty("hello guest");
+        System.out.println(massage.toString());
 
     }
 
     public void login(String username, String password){
+        System.out.println("view model");
         model.login(username,password);
     }
 
@@ -34,6 +37,14 @@ public class MyViewModel extends Observable implements Observer {
 
     public void deleteQuestion(String courseID, String questionID){
         model.deleteQuestion(courseID, questionID);
+    }
+
+    public void changePassword(String username, String oldPassword, String newPassword){
+        if(newPassword == null || newPassword.length() != 6) {
+            setChanged();
+            notifyObservers("illegalPassword");
+        }
+        model.changePassword(username, oldPassword, newPassword);
     }
 
     public void exit() {model.exit();}
@@ -47,6 +58,7 @@ public class MyViewModel extends Observable implements Observer {
         if(o == model){
             if(arg.equals("loggedIn"))
                 massage.set("hello " + model.currentUser.getName());
+            setChanged();
             notifyObservers(arg);
         }
     }

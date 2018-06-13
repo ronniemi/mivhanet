@@ -13,7 +13,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
-public class Main extends Application {
+public class Main {
+/*
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -29,13 +30,13 @@ public class Main extends Application {
 
             Scene scene = new Scene(root, 800, 700);
             scene.getStylesheets().add(getClass().getResource("ViewStyle.css").toExternalForm());
-            stage.setScene(scene);
+            stage.setScene(scene);*/
             /*
             Image image = new Image("resources//Images//source.GIF");  //pass in the image path
             scene.setCursor(new ImageCursor(image));
 
             */
-
+/*
             MyView view = fxmlLoader.getController();
             //view.setResizeEvent(scene);
             view.setViewModel(viewModel);
@@ -56,8 +57,16 @@ public class Main extends Application {
             System.out.println(e);
         }
     }
-
+*/
     public static void main(String[] args) {
-        launch(args);
+        MySystemModel model = new MySystemModel();
+        MyViewModel viewModel = new MyViewModel(model);
+        model.addObserver(viewModel);
+        MyView view = new MyView();
+        view.setViewModel(viewModel);
+        viewModel.addObserver(view);
+
+        //view.login();
+        view.changePassword("u1","123456","abcdef");
     }
 }

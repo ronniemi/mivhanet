@@ -9,15 +9,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Observable;
 
-public class MySystemModel extends Observable { // notifyObservers("");
+public class MySystemModel extends Observable {
     public static Connection conctn;
 
-    public MySystemModel() throws SQLException {
+    public MySystemModel(){
         try {
             Class.forName("org.sqlite.JDBC");
             conctn = DriverManager.getConnection("jdbc:sqlite:courseDB.db");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            return;
         }
     }
 
@@ -175,15 +175,23 @@ public class MySystemModel extends Observable { // notifyObservers("");
                     statement = conctn.prepareStatement("DELETE FROM question WHERE ID=?");
                     statement.setString(1, questionID);
                     statement.execute();
+                    setChanged();
                     notifyObservers("questionDeleted");
                 }
-                else
+                else{
+                    setChanged();
                     notifyObservers("questionNotDeleted");
+                }
             } catch (Exception e) {
+                setChanged();
                 notifyObservers("questionNotDeleted");
             }
-        } else
+        }
+        else{
+            setChanged();
             notifyObservers("questionNotDeleted");
+        }
+
     }
 
     public void editQuestionTime(String courseID, String questionID, long time) {
@@ -255,10 +263,12 @@ public class MySystemModel extends Observable { // notifyObservers("");
 
     public void login(String userName, String password) {
         try {
+            System.out.println("start login");
             PreparedStatement statement = conctn.prepareStatement("SELECT * FROM user WHERE userName=? AND password=?");
             statement.setString(1, userName);
             statement.setString(2, password);
             ResultSet rs = statement.executeQuery();
+            System.out.println(rs);
             if (rs.isBeforeFirst()) {
                 String id = rs.getString("ID");
                 String name = rs.getString("name");
@@ -273,14 +283,18 @@ public class MySystemModel extends Observable { // notifyObservers("");
                 else
                     currentUser = new Lecturer(id, name, address, phone, mail, userName, password, true);
 
+                System.out.println(currentUser.userName);
                 statement = conctn.prepareStatement("UPDATE user SET loginStatus=? WHERE userName=?");
                 statement.setBoolean(1, true);
                 statement.setString(2, userName);
-                statement.executeQuery();
-
+                statement.executeUpdate();
+                System.out.println("logged");
+                setChanged();
                 notifyObservers("loggedIn");
             }
+
         } catch (Exception e) {
+            setChanged();
             notifyObservers("errorLoggedIn");
         }
     }
@@ -296,9 +310,18 @@ public class MySystemModel extends Observable { // notifyObservers("");
                 statement.setString(1, newPassword);
                 statement.setString(2, userName);
                 statement.execute();
+                setChanged();
+                notifyObservers("passwordChanged");
+            }
+            else{
+                setChanged();
+                notifyObservers("passwordNotChanged");
             }
         }
-        catch (Exception e){}
+        catch (Exception e){
+            setChanged();
+            notifyObservers("passwordNotChanged");
+        }
     }
 
     public void createStudent(String studentID) {
@@ -309,7 +332,7 @@ public class MySystemModel extends Observable { // notifyObservers("");
             PreparedStatement statement = conctn.prepareStatement("UPDATE user SET loginStatus=? WHERE userName=?");
             statement.setBoolean(1, false);
             statement.setString(2, currentUser.userName);
-            statement.execute();
+            statement.executeUpdate();
         } catch (Exception e) {
         }
     }
