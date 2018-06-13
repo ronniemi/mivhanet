@@ -18,11 +18,8 @@ public abstract class User extends Person{
         this.status = status;
     }
 
-    public void updateStatus(boolean status){
-        this.status = status;
-        String query = "UPDATE user SET loginStatus='" + status + "' WHERE ID='" + this.id + "'";
-    }
     public String getUserName(){return userName;}
+    public String getName(){return name;}
     public String getPassword(){return password;}
     public void changePassword(String newPassword){}
     public abstract String getRole();

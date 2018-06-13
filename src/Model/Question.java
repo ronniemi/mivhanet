@@ -6,24 +6,19 @@ public class Question {
     String id;
     String body;
     int difficulty;
-    Long time;
-    Course course;
-    HashSet<Comment> comments = new HashSet<>(10);
-    HashSet<Option> options;
-    //HashSet<Model.Score> scores;
-    StudyWorker writtenBy;
+    String time;
 
-    public Question(String body, int difficulty, Long time, StudyWorker writtenBy) {
+    public Question(String id, String body, int difficulty, String time) {
+        this.id = id;
         this.body = body;
         this.difficulty = difficulty;
         this.time = time;
-        this.writtenBy = writtenBy;
     }
 
     public void addExamMoed(ExamMoed em){};
 
     public HashSet<Option> getAllOptions() {
-        return options;
+        return null;
     }
 
     public Option getOption(String optionID){return null;}
@@ -33,7 +28,7 @@ public class Question {
     public boolean isInExamMoed(){return false;}
 
     public StudyWorker getWriter() {
-        return writtenBy;
+        return null;
     }
 
     public void editQuestionBody(String questionBody){}
@@ -45,6 +40,6 @@ public class Question {
     public void addComment(Comment comment){}
 
     public int getNumberOfComments() {
-        return comments.size();
+        return 0;
     }
 }
