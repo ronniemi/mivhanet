@@ -29,12 +29,7 @@ public class MyView implements Observer{
         lastStage=stage;
     }
 
-<<<<<<< HEAD
-    public void login(){
-        viewModel.login("u2", "1234567");
-    }
-=======
->>>>>>> 30453c29ca4b297149d262956f0ad01359cbad0e
+
 
     public void setViewModel(MyViewModel viewModel) {
         this.viewModel = viewModel;
@@ -138,9 +133,10 @@ public class MyView implements Observer{
             //scene.setCursor(new ImageCursor(image));
 
             DeleteQuetController delQuest= fxmlLoader.getController();
+            delQuest.setViewModel(viewModel);
             delQuest.init(stage);
 
-            delQuest.setViewModel(viewModel);
+
 
             viewModel.addObserver(delQuest);
 
