@@ -24,7 +24,6 @@ public class Main extends Application {
             stage.setTitle("Mivhanet");
             //stage.getIcons().add(new Image("resources//Images//8.png".toString()));
 
-
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = fxmlLoader.load(getClass().getResource("MyView.fxml").openStream());
 
@@ -56,13 +55,7 @@ public class Main extends Application {
         {
             System.out.println(e);
         }
-
-
-
-
-
     }
-
 
     public static void main(String[] args) {
         launch(args);
