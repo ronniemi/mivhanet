@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a8a6bda5-e8ee-4dad-aea3-125828fcce6f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Model/Logger.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/courseDB.db" afterPath="$PROJECT_DIR$/courseDB.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/mivhanet/Model/Logger.class" afterPath="$PROJECT_DIR$/out/production/mivhanet/Model/Logger.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/mivhanet/Model/LoggerActions.class" afterPath="$PROJECT_DIR$/out/production/mivhanet/Model/LoggerActions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/mivhanet/Model/LoggerError.class" afterPath="$PROJECT_DIR$/out/production/mivhanet/Model/LoggerError.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/mivhanet/Model/MySystemModel.class" afterPath="$PROJECT_DIR$/out/production/mivhanet/Model/MySystemModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/mivhanet/Model/Question.class" afterPath="$PROJECT_DIR$/out/production/mivhanet/Model/Question.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/mivhanet/View/Main.class" afterPath="$PROJECT_DIR$/out/production/mivhanet/View/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/mivhanet/View/MyView.class" afterPath="$PROJECT_DIR$/out/production/mivhanet/View/MyView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/mivhanet/ViewModel/MyViewModel.class" afterPath="$PROJECT_DIR$/out/production/mivhanet/ViewModel/MyViewModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Course.java" afterPath="$PROJECT_DIR$/src/Model/Course.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/LoggerActions.java" afterPath="$PROJECT_DIR$/src/Model/LoggerActions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/LoggerError.java" afterPath="$PROJECT_DIR$/src/Model/LoggerError.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/MySystemModel.java" afterPath="$PROJECT_DIR$/src/Model/MySystemModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Question.java" afterPath="$PROJECT_DIR$/src/Model/Question.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/Main.java" afterPath="$PROJECT_DIR$/src/View/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/MyView.java" afterPath="$PROJECT_DIR$/src/View/MyView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ViewModel/MyViewModel.java" afterPath="$PROJECT_DIR$/src/ViewModel/MyViewModel.java" />
-    </list>
+    <list default="true" id="a8a6bda5-e8ee-4dad-aea3-125828fcce6f" name="Default" comment="16" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -919,7 +898,7 @@
       <workItem from="1528890410148" duration="1403000" />
       <workItem from="1528892321581" duration="2732000" />
       <workItem from="1528895675232" duration="54000" />
-      <workItem from="1528895907003" duration="23864000" />
+      <workItem from="1528895907003" duration="23929000" />
     </task>
     <task id="LOCAL-00001" summary="with db">
       <created>1528885311999</created>
@@ -956,15 +935,21 @@
       <option name="project" value="LOCAL" />
       <updated>1528909432484</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="16">
+      <created>1528921637410</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1528921637410</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50213000" />
+    <option name="totallyTimeSpent" value="50278000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1384" height="736" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -983,7 +968,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35559267" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3338898" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21869783" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" x="0" y="293" width="1366" height="131" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21010248" sideWeight="0.51" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1033,7 +1018,8 @@
     <MESSAGE value="12" />
     <MESSAGE value="14" />
     <MESSAGE value="15" />
-    <option name="LAST_COMMIT_MESSAGE" value="15" />
+    <MESSAGE value="16" />
+    <option name="LAST_COMMIT_MESSAGE" value="16" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
