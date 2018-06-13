@@ -15,6 +15,8 @@ public class Main {
         statement.setString(4, "bbbbbbb");
         statement.setInt(5, 3);
         statement.setString(6, "sss");
+
         statement.execute();
+
     }
 }
