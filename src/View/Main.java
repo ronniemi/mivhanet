@@ -1,5 +1,5 @@
 package View;
-import Model.SystemModel;
+import Model.MySystemModel;
 import ViewModel.MyViewModel;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -18,7 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try{
-            SystemModel model = new SystemModel();
+            MySystemModel model = new MySystemModel();
             MyViewModel viewModel = new MyViewModel(model);
             model.addObserver(viewModel);
             stage.setTitle("Mivhanet");

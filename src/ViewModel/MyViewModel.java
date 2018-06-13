@@ -16,7 +16,7 @@ public class MyViewModel extends Observable implements Observer {
     private MySystemModel model;
     public StringProperty massage;
 
-    public void MyViewModel(MySystemModel model){
+    public MyViewModel(MySystemModel model){
         model.addObserver(this);
         this.model = model;
         massage = new SimpleStringProperty();
