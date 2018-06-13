@@ -1,8 +1,11 @@
 package ViewModel;
 
-import Model.SystemModel;
+import Model.MySystemModel;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.util.Pair;
 
+import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,11 +13,14 @@ import java.util.Observer;
  * Created by ronnie on 13-Jun-18.
  */
 public class MyViewModel extends Observable implements Observer {
-    private SystemModel model;
+    private MySystemModel model;
+    public StringProperty massage;
 
-    public void MyViewModel(SystemModel model){
+    public void MyViewModel(MySystemModel model){
         model.addObserver(this);
         this.model = model;
+        massage = new SimpleStringProperty();
+
     }
 
     public void login(String username, String password){
@@ -26,11 +32,21 @@ public class MyViewModel extends Observable implements Observer {
         return usernameAndPassword;
     }
 
+    public void deleteQuestion(String courseID, String questionID){
+        model.deleteQuestion(courseID, questionID);
+    }
+
+    public void exit() {model.exit();}
+
+    public HashSet<Model.Course> getAllCourses(){
+        return model.getAllCourses();
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         if(o == model){
-            if(arg.equals("loggedIn")){
-            }
+            if(arg.equals("loggedIn"))
+                massage.set("hello " + model.currentUser.getName());
             notifyObservers(arg);
         }
     }
