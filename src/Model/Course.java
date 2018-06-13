@@ -29,5 +29,5 @@ public class Course {
 
     public HashMap<String, StudyWorker> getAllCourseStudyWorkers(){return null;}
 
-    public void deleteQuestion(String questionID){};
+    public void deleteQuestion(String questionID){}
 }

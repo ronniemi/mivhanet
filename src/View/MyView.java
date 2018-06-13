@@ -1,5 +1,7 @@
 package View;
 
+import Model.Course;
+import Model.Question;
 import ViewModel.MyViewModel;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -9,9 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.util.Pair;
 
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Created by ronnie on 13-Jun-18.
@@ -27,7 +27,7 @@ public class MyView implements Observer{
     }
 
     public void login(){
-        viewModel.login("u1", "123456");
+        viewModel.login("u2", "1234567");
     }
 
     public void changePassword(String username, String oldPassword, String newPassword){
@@ -36,6 +36,21 @@ public class MyView implements Observer{
 
     public void deleteQuestion(String courseId, String questionId){
         viewModel.deleteQuestion(courseId, questionId);
+    }
+
+    public void getAllCourse(){
+        HashSet<Course> courses = viewModel.getAllCourses();
+    }
+
+    public void getAllQuestionInCourse(String courseId){
+        HashSet<Question> questions = viewModel.getAllQuestionsInCourse(courseId);
+        Iterator<Question> iter = questions.iterator();
+        System.out.println(questions.size());
+        while(iter.hasNext())
+        {
+            Question q = iter.next();
+            System.out.println(q.body);
+        }
     }
 
     @Override

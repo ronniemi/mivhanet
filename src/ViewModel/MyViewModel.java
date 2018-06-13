@@ -21,12 +21,9 @@ public class MyViewModel extends Observable implements Observer {
         model.addObserver(this);
         this.model = model;
         massage = new SimpleStringProperty("hello guest");
-        System.out.println(massage.toString());
-
     }
 
     public void login(String username, String password){
-        System.out.println("view model");
         model.login(username,password);
     }
 
@@ -43,6 +40,7 @@ public class MyViewModel extends Observable implements Observer {
         if(newPassword == null || newPassword.length() != 6) {
             setChanged();
             notifyObservers("illegalPassword");
+            return;
         }
         model.changePassword(username, oldPassword, newPassword);
     }
@@ -51,6 +49,10 @@ public class MyViewModel extends Observable implements Observer {
 
     public HashSet<Model.Course> getAllCourses(){
         return model.getAllCourses();
+    }
+
+    public HashSet<Model.Question> getAllQuestionsInCourse(String courseId){
+        return model.getAllQuestionInCourse(courseId);
     }
 
     @Override
