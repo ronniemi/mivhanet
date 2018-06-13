@@ -10,7 +10,7 @@ import java.util.Observer;
 public class MyViewModel extends Observable implements Observer {
     private SystemModel model;
 
-    public void MyViewModel(SystemModel model){
+    public MyViewModel(SystemModel model){
 
     }
 
