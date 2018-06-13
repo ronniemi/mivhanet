@@ -10,16 +10,6 @@ import java.util.Map;
 import java.util.Observable;
 
 public class MySystemModel extends Observable {
-    public static Connection conctn;
-
-    public MySystemModel(){
-        try {
-            Class.forName("org.sqlite.JDBC");
-            conctn = DriverManager.getConnection("jdbc:sqlite:courseDB.db");
-        } catch (Exception e) {
-            return;
-        }
-    }
 
     emailNotifer notifer;
     LoggerError loggerError;
@@ -33,15 +23,20 @@ public class MySystemModel extends Observable {
     String lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345674890";
 
     public void createCourseInSemester(String courseID, semester sem, String year, HashSet<String> studentsID, HashSet<String> lecturerID, HashSet<String> assistantID) {}
+
     public HashSet<Course> getAllCourses() {
         HashSet<Course> courses = new HashSet<Course>();
         try{
+            Connection conctn = DBConnection.getInstance().getConnection();
             PreparedStatement statement = conctn.prepareStatement("SELECT * FROM course");
             ResultSet rs = statement.executeQuery();
             while(rs.next())
                 courses.add(new Course(rs.getString("name"), rs.getString("ID")));
         }
-        catch(Exception e){}
+        catch(Exception e){
+            LoggerError.getInstance().writeToLog("error while getting all courses from db");
+        }
+        LoggerActions.getInstance().writeToLog("get all courses from db");
         return courses;
     }
 
@@ -65,10 +60,7 @@ public class MySystemModel extends Observable {
         return null;
     }
 
-    public User getUser(String userID) {
-        String query = "SELECT FROM user * WHERE ID='" + userID + "'";
-        return null; //return user
-    }
+    public User getUser(String userID) {return null;}
 
     public HashSet<Assistant> getAllAssistants() {
         return null;
@@ -78,37 +70,27 @@ public class MySystemModel extends Observable {
         return null;
     }
 
-    public void createCourse(String name) {
-    }
+    public void createCourse(String name) {}
 
     public String generateCourseID() {
         return null;
     }
 
-    public void updateSylabus(String sylabus, String courseID, semester sem, String year) {
-    }
+    public void updateSylabus(String sylabus, String courseID, semester sem, String year) {}
 
-    public void createExamMoed(String courseID, semester sem, String year, moed m, Date date) {
-    }
+    public void createExamMoed(String courseID, semester sem, String year, moed m, Date date) {}
 
-    public void addQuestionToExamMoed(String courseID, semester sem, String year, String questionID) {
-    }
+    public void addQuestionToExamMoed(String courseID, semester sem, String year, String questionID) {}
 
-    public void printExamMoed(String courseID, semester sem, String year, moed m) {
-    }
+    public void printExamMoed(String courseID, semester sem, String year, moed m) {}
 
-    public void display(String message) {
-    }
+    public void display(String message) {}
 
-    public void createStudentSolution(String courseID, semester sem, String year, moed m, String studentID) {
-    }
+    public void createStudentSolution(String courseID, semester sem, String year, moed m, String studentID) {}
 
-    public void addOptionToStudentSolution(String courseID, semester sem, String year, moed m, String studentID, Map<String, String> solution) {
-    }
+    public void addOptionToStudentSolution(String courseID, semester sem, String year, moed m, String studentID, Map<String, String> solution) {}
 
-    public HashSet<Student> getStudentInCourseInSemester(String courseID, semester sem, String year, String studentID) {
-        return null;
-    }
+    public HashSet<Student> getStudentInCourseInSemester(String courseID, semester sem, String year, String studentID) {return null;}
 
     public HashSet<Student> getAllStudentOfCourseInSemester(String courseID, semester sem, String year) {
         return null;
@@ -118,28 +100,24 @@ public class MySystemModel extends Observable {
         return null;
     }
 
-    public void createNewQuestion(String courseID, String questionBody, int questionDificulty, long questionTime) {
-    }
+    public void createNewQuestion(String courseID, String questionBody, int questionDificulty, long questionTime) {}
 
-    public void addOptionToQuestion(String courseID, String questionID, String optionBody, boolean isRight) {
-    }
+    public void addOptionToQuestion(String courseID, String questionID, String optionBody, boolean isRight) {}
 
-    public void factor(String courseID, semester sem, String year, moed m, int factor) {
-    }
+    public void factor(String courseID, semester sem, String year, moed m, int factor) {}
 
-    public void updateStudentGrade(String courseID, semester sem, String year, moed m, String studentID, int grade) {
-    }
+    public void updateStudentGrade(String courseID, semester sem, String year, moed m, String studentID, int grade) {}
 
     public int getStudentGrade(String courseID, semester sem, String year, moed m, String studentID) {
         return 0;
     }
 
-    public void confirmExam(String courseID, semester sem, String year, moed m, String lecturerID) {
-    }
+    public void confirmExam(String courseID, semester sem, String year, moed m, String lecturerID) {}
 
     public HashSet<Question> getAllQuestionInCourse(String courseID) {
         HashSet<Question> questions = new HashSet<Question>();
         try{
+            Connection conctn = DBConnection.getInstance().getConnection();
             PreparedStatement statement = conctn.prepareStatement("SELECT * FROM question WHERE courseID=?");
             statement.setString(1, courseID);
             ResultSet rs = statement.executeQuery();
@@ -152,7 +130,10 @@ public class MySystemModel extends Observable {
                 questions.add(q);
             }
         }
-        catch(Exception e){}
+        catch(Exception e){
+            LoggerError.getInstance().writeToLog("error while getting all question for course id " + courseID + " from db");
+        }
+        LoggerActions.getInstance().writeToLog("get all question for course " + courseID + " from db");
         return questions;
     }
 
@@ -160,8 +141,9 @@ public class MySystemModel extends Observable {
     }
 
     public void deleteQuestion(String courseID, String questionID) {
-        if (currentUser.getRole().equals("Lecturer")) {
+        if (currentUser != null && currentUser.getRole().equals("Lecturer")) {
             try {
+                Connection conctn = DBConnection.getInstance().getConnection();
                 PreparedStatement statement = conctn.prepareStatement("SELECT managerID FROM courseInSemester WHERE courseID=?");
                 statement.setString(1, courseID);
                 ResultSet rs = statement.executeQuery();
@@ -174,24 +156,37 @@ public class MySystemModel extends Observable {
                 if(isManager){
                     statement = conctn.prepareStatement("DELETE FROM question WHERE ID=?");
                     statement.setString(1, questionID);
-                    statement.execute();
-                    setChanged();
-                    notifyObservers("questionDeleted");
+                    if(statement.execute()){
+                        setChanged();
+                        notifyObservers("questionDeleted");
+                        LoggerActions.getInstance().writeToLog("question " + questionID + " deleted");
+                        return;
+                    }
+                    else{
+                        setChanged();
+                        notifyObservers("questionNotDeleted");
+                        LoggerActions.getInstance().writeToLog("question " + questionID + " not deleted because not exist");
+                        return;
+                    }
                 }
                 else{
                     setChanged();
                     notifyObservers("questionNotDeleted");
+                    LoggerError.getInstance().writeToLog("question " + questionID + " not deleted because user is not course manager");
+                    return;
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 setChanged();
                 notifyObservers("questionNotDeleted");
+                LoggerError.getInstance().writeToLog(" error while tring to delete " + questionID + " question" );
             }
         }
         else{
             setChanged();
             notifyObservers("questionNotDeleted");
+            LoggerError.getInstance().writeToLog("question " + questionID + " not deleted becuse user is not course manager");
         }
-
     }
 
     public void editQuestionTime(String courseID, String questionID, long time) {
@@ -206,64 +201,12 @@ public class MySystemModel extends Observable {
     public void editOption(String courseID, String questionID, String optionBody) {
     }
 
-    public Pair<String, String> createNewUser(String ID, String name, String address, String phoneNumber, String email, String role) {
-        if (currentUser.getRole().equals("Secretary")) {
-            String username = generateUsername();
-            String password = generatePassword();
-            try {
-                PreparedStatement statement = conctn.prepareStatement("INSERT INTO user values(?, ?, ?, ?, ?, ?, ?, ?, ?) ");
-                statement.setString(1, ID);
-                statement.setString(2, username);
-                statement.setString(3, name);
-                statement.setString(4, address);
-                statement.setString(5, phoneNumber);
-                statement.setString(6, email);
-                statement.setString(7, password);
-                statement.setString(8, role);
-                statement.setBoolean(9, false);
-                statement.execute();
-
-                return new Pair<>(username, password);
-            } catch (SQLException e) {
-                return null;
-            }
-        } else
-            return null;
-    }
-
-    private String generateUsername() {
-        StringBuilder builder = new StringBuilder();
-
-        HashSet<String> usernames = new HashSet<String>();
-        try {
-            PreparedStatement statement = conctn.prepareStatement("SELECT userName FROM user");
-            ResultSet rs = statement.executeQuery();
-            while (rs.next())
-                usernames.add(rs.getString("userName"));
-
-        } catch (SQLException e) {
-        }
-
-        while (builder.toString().length() == 0) {
-            for (int i = 0; i < 8; i++)
-                builder.append(lexicon.charAt(rand.nextInt(lexicon.length())));
-            if (usernames.contains(builder.toString())) {
-                builder = new StringBuilder();
-            }
-        }
-        return builder.toString();
-    }
-
-    private String generatePassword() {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < 10; i++)
-            builder.append(lexicon.charAt(rand.nextInt(lexicon.length())));
-        return builder.toString();
-    }
+    public Pair<String, String> createNewUser(String ID, String name, String address, String phoneNumber, String email, String role) {return null;}
 
     public void login(String userName, String password) {
         try {
             System.out.println("start login");
+            Connection conctn = DBConnection.getInstance().getConnection();
             PreparedStatement statement = conctn.prepareStatement("SELECT * FROM user WHERE userName=? AND password=?");
             statement.setString(1, userName);
             statement.setString(2, password);
@@ -288,9 +231,14 @@ public class MySystemModel extends Observable {
                 statement.setBoolean(1, true);
                 statement.setString(2, userName);
                 statement.executeUpdate();
-                System.out.println("logged");
                 setChanged();
                 notifyObservers("loggedIn");
+                LoggerActions.getInstance().writeToLog("user " + userName + " logged in");
+            }
+            else{
+                setChanged();
+                notifyObservers("errorLoggedIn");
+                LoggerError.getInstance().writeToLog("user " + userName + " failed to log in");
             }
             else
             {
@@ -301,11 +249,13 @@ public class MySystemModel extends Observable {
         } catch (Exception e) {
             setChanged();
             notifyObservers("errorLoggedIn");
+            LoggerError.getInstance().writeToLog("user " + userName + " failed to log in");
         }
     }
 
     public void changePassword(String userName, String oldPassword, String newPassword) {
         try{
+            Connection conctn = DBConnection.getInstance().getConnection();
             PreparedStatement statement = conctn.prepareStatement("SELECT * FROM user WHERE userName=? AND password=?");
             statement.setString(1, userName);
             statement.setString(2, oldPassword);
@@ -317,28 +267,33 @@ public class MySystemModel extends Observable {
                 statement.execute();
                 setChanged();
                 notifyObservers("passwordChanged");
+                LoggerActions.getInstance().writeToLog("user " + userName + " changed password");
             }
             else{
                 setChanged();
                 notifyObservers("passwordNotChanged");
+                LoggerError.getInstance().writeToLog("user " + userName + " failed to change password - wrong user name or password");
             }
         }
         catch (Exception e){
             setChanged();
             notifyObservers("passwordNotChanged");
+            LoggerError.getInstance().writeToLog("user " + userName + " failed to change password");
         }
     }
 
-    public void createStudent(String studentID) {
-    }
+    public void createStudent(String studentID) {}
 
     public void exit() {
         try {
+            Connection conctn = DBConnection.getInstance().getConnection();
             PreparedStatement statement = conctn.prepareStatement("UPDATE user SET loginStatus=? WHERE userName=?");
             statement.setBoolean(1, false);
             statement.setString(2, currentUser.userName);
             statement.executeUpdate();
+            LoggerActions.getInstance().writeToLog("user " + currentUser.userName + " logged out");
         } catch (Exception e) {
+            LoggerError.getInstance().writeToLog("user " + currentUser.userName + " falied to log out");
         }
     }
 }

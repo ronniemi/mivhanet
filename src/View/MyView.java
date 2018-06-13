@@ -1,5 +1,7 @@
 package View;
 
+import Model.Course;
+import Model.Question;
 import ViewModel.MyViewModel;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Created by ronnie on 13-Jun-18.
@@ -29,6 +29,12 @@ public class MyView implements Observer{
         lastStage=stage;
     }
 
+<<<<<<< HEAD
+    public void login(){
+        viewModel.login("u2", "1234567");
+    }
+=======
+>>>>>>> 30453c29ca4b297149d262956f0ad01359cbad0e
 
     public void setViewModel(MyViewModel viewModel) {
         this.viewModel = viewModel;
@@ -36,6 +42,21 @@ public class MyView implements Observer{
     }
 
 
+
+    public void getAllCourse(){
+        HashSet<Course> courses = viewModel.getAllCourses();
+    }
+
+    public void getAllQuestionInCourse(String courseId){
+        HashSet<Question> questions = viewModel.getAllQuestionsInCourse(courseId);
+        Iterator<Question> iter = questions.iterator();
+        System.out.println(questions.size());
+        while(iter.hasNext())
+        {
+            Question q = iter.next();
+            System.out.println(q.body);
+        }
+    }
 
     @Override
     public void update(Observable o, Object arg) {

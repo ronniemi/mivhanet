@@ -1,4 +1,5 @@
 package View;
+import Model.Course;
 import Model.MySystemModel;
 import ViewModel.MyViewModel;
 import javafx.application.Application;
@@ -11,6 +12,8 @@ import javafx.scene.image.Image;
 
 
 import javafx.stage.Stage;
+
+import java.util.HashSet;
 
 
 public class Main extends Application {
@@ -68,6 +71,23 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+<<<<<<< HEAD
+        MySystemModel model = new MySystemModel();
+        MyViewModel viewModel = new MyViewModel(model);
+        model.addObserver(viewModel);
+        MyView view = new MyView();
+        view.setViewModel(viewModel);
+        viewModel.addObserver(view);
+
+        view.login();
+        //view.changePassword("u4","1234567","12");
+        //view.deleteQuestion("25522", "27");
+        //viewModel.exit();
+        //view.getAllQuestionInCourse("22222");
+
+
+=======
         launch(args);
+>>>>>>> 30453c29ca4b297149d262956f0ad01359cbad0e
     }
 }

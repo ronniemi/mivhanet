@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 public class Question {
     String id;
-    String body;
+    public String body;
     int difficulty;
     String time;
 

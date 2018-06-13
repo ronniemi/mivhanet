@@ -29,6 +29,9 @@ public class Course {
 
     public HashMap<String, StudyWorker> getAllCourseStudyWorkers(){return null;}
 
+<<<<<<< HEAD
+    public void deleteQuestion(String questionID){}
+=======
     public void deleteQuestion(String questionID){};
 
     PreparedStatement statement = conn.prepareStatement("SELECT userName, password FROM user WHERE Username =?");
@@ -44,4 +47,5 @@ public class Course {
                 return "No Comments";
         return res;
 }
+>>>>>>> 30453c29ca4b297149d262956f0ad01359cbad0e
 }
