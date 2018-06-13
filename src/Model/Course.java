@@ -8,7 +8,7 @@ public class Course {
     String id;
     HashSet<CourseInSemester> courses;
     HashMap<String, Question> Questions;
-    SystemModel controller;
+    MySystemModel controller;
 
     public Course(String name, String id) {
         this.name = name;
@@ -30,14 +30,4 @@ public class Course {
     public HashMap<String, StudyWorker> getAllCourseStudyWorkers(){return null;}
 
     public void deleteQuestion(String questionID){};
-
-    public static Connection conctn;
-    public static Statement stmt;
-    public User connected;
-
-    public Model() throws Exception {
-        Class.forName("org.sqlite.JDBC");
-        conctn = DriverManager.getConnection("jdbc:sqlite:courseDB.db");
-        stmt = conctn.createStatement();
-    }
 }
