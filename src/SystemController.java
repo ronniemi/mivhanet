@@ -20,7 +20,7 @@ public class SystemController {
 
     public HashSet<semester> getAllSemesters() {return null;}
     public HashSet<String> getAllYears() {return null;}
-    public HashSet<StudyWorker> getAllStudyWorkers() {};
+    public HashSet<StudyWorker> getAllStudyWorkers() {return null;}
     public Student getStudent(String studentID){};
     public HashSet<Student> getAllStudents() {};
     public User getUser(String userID){};
