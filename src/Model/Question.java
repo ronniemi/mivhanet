@@ -3,7 +3,7 @@ package Model;
 import java.util.HashSet;
 
 public class Question {
-    String id;
+    public String id;
     public String body;
     int difficulty;
     String time;

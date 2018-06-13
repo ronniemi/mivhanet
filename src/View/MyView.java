@@ -55,13 +55,7 @@ public class MyView implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        if(o == viewModel){
-            if(arg.equals("questionDeleted"))
-                showAlert("Question deleted!", "MIVHANET");
-            else if(arg.equals("questionNotDeleted"))
-                showAlert("Question not deleted!", "MIVHANET");
 
-        }
     }
 
     private void showAlert(String alertMessage, String title) {
