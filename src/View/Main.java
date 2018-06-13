@@ -16,8 +16,7 @@ import javafx.stage.Stage;
 import java.util.HashSet;
 
 
-public class Main {
-/*
+public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -26,30 +25,34 @@ public class Main {
             MyViewModel viewModel = new MyViewModel(model);
             model.addObserver(viewModel);
             stage.setTitle("Mivhanet");
-            //stage.getIcons().add(new Image("resources//Images//8.png".toString()));
-
+            //stage.getIcons().add(new Image("resources//8.png".toString()));
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = fxmlLoader.load(getClass().getResource("MyView.fxml").openStream());
+            Parent root = fxmlLoader.load(getClass().getResource("Login.fxml").openStream());
 
             Scene scene = new Scene(root, 800, 700);
-            scene.getStylesheets().add(getClass().getResource("ViewStyle.css").toExternalForm());
-            stage.setScene(scene);*/
+            scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+            stage.setScene(scene);
             /*
             Image image = new Image("resources//Images//source.GIF");  //pass in the image path
             scene.setCursor(new ImageCursor(image));
 
             */
-/*
-            MyView view = fxmlLoader.getController();
-            //view.setResizeEvent(scene);
-            view.setViewModel(viewModel);
-            viewModel.addObserver(view);
 
+            LoginController login = fxmlLoader.getController();
+            //view.setResizeEvent(scene);
+            login.setViewModel(viewModel);
+            viewModel.addObserver(login);
+
+            login.init(stage);
 
             stage.setOnCloseRequest(event -> {
+                viewModel.exit();
                 event.consume();
-                view.closeProgram();
+                System.exit(0);
+                Platform.exit();
             });
+
+
             // firststage.close();
             stage.show();
         }
@@ -59,9 +62,16 @@ public class Main {
         {
             System.out.println(e);
         }
+
+
+
+
+
     }
-*/
+
+
     public static void main(String[] args) {
+<<<<<<< HEAD
         MySystemModel model = new MySystemModel();
         MyViewModel viewModel = new MyViewModel(model);
         model.addObserver(viewModel);
@@ -76,5 +86,8 @@ public class Main {
         //view.getAllQuestionInCourse("22222");
 
 
+=======
+        launch(args);
+>>>>>>> 30453c29ca4b297149d262956f0ad01359cbad0e
     }
 }

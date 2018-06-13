@@ -240,6 +240,11 @@ public class MySystemModel extends Observable {
                 notifyObservers("errorLoggedIn");
                 LoggerError.getInstance().writeToLog("user " + userName + " failed to log in");
             }
+            else
+            {
+                setChanged();
+                notifyObservers("errorLoggedIn");
+            }
 
         } catch (Exception e) {
             setChanged();
