@@ -1,5 +1,6 @@
 package ViewModel;
 
+import Model.MySystemModel;
 import Model.SystemModel;
 import java.util.Observable;
 import java.util.Observer;
@@ -8,9 +9,9 @@ import java.util.Observer;
  * Created by ronnie on 13-Jun-18.
  */
 public class MyViewModel extends Observable implements Observer {
-    private SystemModel model;
+    private MySystemModel model;
 
-    public MyViewModel(SystemModel model){
+    public MyViewModel(MySystemModel model){
 
     }
 

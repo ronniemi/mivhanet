@@ -30,4 +30,18 @@ public class Course {
     public HashMap<String, StudyWorker> getAllCourseStudyWorkers(){return null;}
 
     public void deleteQuestion(String questionID){};
+
+    PreparedStatement statement = conn.prepareStatement("SELECT userName, password FROM user WHERE Username =?");
+        statement.setString(1, username);
+    ResultSet rs=statement.executeQuery();
+
+    String res="";
+        while(rs.next())
+    {
+        res+="#ID: "+rs.getString("commentID") +"- Writer: "+ rs.getString("writerID") +"\nBody: "+ rs.getString("body") +"\n";
+    }
+        if(res.equals(""))
+                return "No Comments";
+        return res;
+}
 }
