@@ -1,7 +1,7 @@
-import java.util.HashSet;
+package Model;
 
 public abstract class Logger {
     String id;
     String body;
-    SystemController controller;
+    SystemModel controller;
 }

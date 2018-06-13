@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.HashSet;
 
 public class Question {
@@ -8,7 +10,7 @@ public class Question {
     Course course;
     HashSet<Comment> comments = new HashSet<>(10);
     HashSet<Option> options;
-    //HashSet<Score> scores;
+    //HashSet<Model.Score> scores;
     StudyWorker writtenBy;
 
     public Question(String body, int difficulty, Long time, StudyWorker writtenBy) {

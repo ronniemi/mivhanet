@@ -1,5 +1,7 @@
+package Model;
+
 public class emailNotifer {
-    SystemController contoller;
+    SystemModel contoller;
 
     public void notifyUser(User user, String message){};
 }

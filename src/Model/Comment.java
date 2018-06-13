@@ -1,3 +1,5 @@
+package Model;
+
 public class Comment {
     String body;
     Question question;

@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.HashSet;
 
 public class CourseInSemester {

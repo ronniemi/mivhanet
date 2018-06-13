@@ -1,10 +1,12 @@
+package Model;
+
 import javafx.util.Pair;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 
-public class SystemController {
+public class SystemModel {
     emailNotifer notifer;
     LoggerError loggerError;
     LoggerActions loggerActions;

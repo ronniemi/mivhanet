@@ -1,3 +1,5 @@
+package Model;
+
 public class User extends Person{
     String address;
     String phone;
@@ -5,7 +7,7 @@ public class User extends Person{
     String userName;
     String password;
     Boolean status;
-    SystemController controller;
+    SystemModel controller;
 
     public void updateStatus(boolean status){};
     public String getUserName(){return null;}

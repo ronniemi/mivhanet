@@ -1,3 +1,5 @@
+package Model;
+
 public class Option {
     String body;
     boolean isRight;

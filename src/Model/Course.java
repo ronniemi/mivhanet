@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -6,7 +8,7 @@ public class Course {
     String id;
     HashSet<CourseInSemester> courses;
     HashMap<String, Question> Questions;
-    SystemController controller;
+    SystemModel controller;
 
     public Course(String name, String id) {
         this.name = name;
