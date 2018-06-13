@@ -1,7 +1,7 @@
 package Model;
 
 public class emailNotifer {
-    SystemModel contoller;
+    MySystemModel contoller;
 
     public void notifyUser(User user, String message){};
 }

@@ -1,5 +1,6 @@
 package Model;
 
+import java.sql.*;
 import javafx.util.Pair;
 
 import java.util.Date;
@@ -7,7 +8,18 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Observable;
 
-public class SystemModel extends Observable { // notifyObservers("");
+public class MySystemModel extends Observable { // notifyObservers("");
+    public static Connection conctn;
+
+    public MySystemModel() throws SQLException {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            conctn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\dorrb\\Documents\\GitHub\\mivhanet\\src\\courseDB.db");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     emailNotifer notifer;
     LoggerError loggerError;
     LoggerActions loggerActions;

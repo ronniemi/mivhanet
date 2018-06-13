@@ -7,7 +7,7 @@ public class User extends Person{
     String userName;
     String password;
     Boolean status;
-    SystemModel controller;
+    MySystemModel controller;
 
     public void updateStatus(boolean status){};
     public String getUserName(){return null;}
