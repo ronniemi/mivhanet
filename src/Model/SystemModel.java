@@ -5,8 +5,9 @@ import javafx.util.Pair;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Observable;
 
-public class SystemModel {
+public class SystemModel extends Observable { // notifyObservers("");
     emailNotifer notifer;
     LoggerError loggerError;
     LoggerActions loggerActions;
