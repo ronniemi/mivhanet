@@ -292,6 +292,11 @@ public class MySystemModel extends Observable {
                 setChanged();
                 notifyObservers("loggedIn");
             }
+            else
+            {
+                setChanged();
+                notifyObservers("errorLoggedIn");
+            }
 
         } catch (Exception e) {
             setChanged();
