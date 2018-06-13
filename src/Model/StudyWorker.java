@@ -2,12 +2,12 @@ package Model;
 
 import java.util.HashSet;
 
-public class StudyWorker extends User{
+public abstract class StudyWorker extends User{
 
-    HashSet<Comment> commentsWritten;
-    HashSet<Question> questionsWritten;
+    public StudyWorker(String id, String name, String address, String phone, String mail, String userName, String password, Boolean status) {
+        super(id, name, address, phone, mail, userName, password, status);
+    }
 
-    public Course getCurrentcourse(){return null;}
-    public HashSet<Course> getAllCourses(){return null;}
-    public String getRole(){return null;}
+    public abstract Course getCurrentcourse();
+    public abstract HashSet<Course> getAllCourses();
 }
