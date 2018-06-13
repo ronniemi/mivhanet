@@ -18,7 +18,7 @@ public class SystemController {
         return courses;
     }
 
-    public HashSet<semester> getAllSemesters() {};
+    public HashSet<semester> getAllSemesters() {return null;}
     public HashSet<String> getAllYears() {};
     public HashSet<StudyWorker> getAllStudyWorkers() {};
     public Student getStudent(String studentID){};
